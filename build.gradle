@@ -1,19 +1,37 @@
-plugins {
-    id 'java'
+buildscript{
+    ext{
+        springBootVersion='2.5.7'
+        dependencyManageVersion='1.0.11.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.5.7'
+        classpath 'io.spring.gradle:dependency-management-plugin:${dependencyManageVersion}'
+    }
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+subprojects {
+    group 'com.modules'
+    version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
+    sourceCompatibility = 11
 
-test {
-    useJUnitPlatform()
+    repositories {
+        mavenCentral() //
+    }
+
+    dependencies{
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    }
 }

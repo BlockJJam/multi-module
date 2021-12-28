@@ -1,0 +1,17 @@
+buildscript {
+    ext{
+        springBootStarterVersion='2.5.7'
+    }
+}
+
+group 'com.modules'
+version 'unspecified'
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootStarterVersion
+    implementation project(':module-common')
+}
+
+test {
+    useJUnitPlatform()
+}

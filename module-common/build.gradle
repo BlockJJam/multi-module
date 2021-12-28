@@ -1,0 +1,21 @@
+buildscript {
+    ext{
+        springBootStarterVersion='2.5.7'
+    }
+}
+
+group 'com.modules'
+version 'unspecified'
+
+dependencies {
+    api group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootStarterVersion
+    runtimeOnly group: 'com.h2database', name: 'h2', version: '2.0.202'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// below) common module은 실생가능한 bootjar로 활용되지 않기때문에 밑의 설정을 해준다
+bootJar{ enabled= false}
+jar{ enabled = true}
